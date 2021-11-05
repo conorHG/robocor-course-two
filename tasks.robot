@@ -79,4 +79,5 @@ Open robotsparebinindustries
     Sleep    2
     Read Orders File
     Zip Folder
+    [Teardown]    Close Browser
     
