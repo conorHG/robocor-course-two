@@ -11,7 +11,6 @@ Library    RPA.Tables
 Library    RPA.Archive
 Library    Dialogs
 Library    RPA.Robocorp.Vault
-Library    RPA.FileSystem
 
 *** Keywords ***
 Download File
@@ -70,9 +69,8 @@ Read Orders File
         Order Another robot
     END
 
-Zip Folder and Remove Files
+Zip Folder
     Archive Folder With Zip    ${CURDIR}\\exports\\receipts    ${CURDIR}\\Output\\receipts.zip
-    Remove Files    ${CURDIR}\\exports\\receipts\\
 
 *** Tasks ***
 Open robotsparebinindustries
@@ -80,5 +78,5 @@ Open robotsparebinindustries
     Open Web Browser and Close Modal
     Sleep    2
     Read Orders File
-    Zip Folder and Remove Files
+    Zip Folder
     
