@@ -16,7 +16,7 @@ Library    RPA.Robocorp.Vault
 Download File
     [Arguments]    ${link}
     ${url}=    Get Value From User    Url for robot orders to be created?    ${link}
-    Download    ${url}   ${CURDIR}\\exports\\downloads\\orders.csv    overwrite=True
+    Download    ${url}   ${CURDIR}${/}exports${/}downloads${/}orders.csv    overwrite=True
 
 Get Keys And Download File
     ${secret}=    Get Secret    Orders URL
@@ -45,15 +45,15 @@ Fill Out Form
 
 Take ScrnShot
     [Arguments]    ${order}
-    Screenshot    id:robot-preview-image    ${CURDIR}\\exports\\receipts\\${order}[Order number].png
+    Screenshot    id:robot-preview-image    ${CURDIR}${/}exports${/}receipts${/}${order}[Order number].png
 
 Save PDF
     [Arguments]    ${order}
     ${orderId}=    Convert To String  ${order}[Order number]
     Wait Until Element Is Visible    id:receipt
     ${receipt}=    Get Element Attribute    id:receipt    outerHTML
-    Html To Pdf    ${receipt}    ${CURDIR}\\exports\\receipts\\${orderId}.pdf
-    Add Watermark Image To Pdf    ${CURDIR}\\exports\\receipts\\${orderId}.png    ${CURDIR}\\exports\\receipts\\${orderId}.pdf    ${CURDIR}\\exports\\receipts\\${orderId}.pdf
+    Html To Pdf    ${receipt}    ${CURDIR}${/}exports${/}receipts${/}${orderId}.pdf
+    Add Watermark Image To Pdf    ${CURDIR}${/}exports${/}receipts${/}${orderId}.png    ${CURDIR}${/}exports${/}receipts${/}${orderId}.pdf    ${CURDIR}${/}exports${/}receipts${/}${orderId}.pdf
 
 Order Another robot
     Click Button    id:order-another
@@ -61,7 +61,7 @@ Order Another robot
     Wait Until Element Is Visible    id:head
 
 Read Orders File
-    ${orders}=    Read table from CSV    ${CURDIR}\\exports\\downloads\\orders.csv    header=True    delimiters=,
+    ${orders}=    Read table from CSV    ${CURDIR}${/}exports${/}downloads${/}orders.csv    header=True    delimiters=,
     FOR    ${row}    IN    @{orders}
         Fill Out Form    ${row}
         Take ScrnShot    ${row}
@@ -70,7 +70,7 @@ Read Orders File
     END
 
 Zip Folder
-    Archive Folder With Zip    ${CURDIR}\\exports\\receipts    ${CURDIR}\\Output\\receipts.zip
+    Archive Folder With Zip    ${CURDIR}${/}exports${/}receipts    ${CURDIR}${/}Output${/}receipts.zip
 
 *** Tasks ***
 Open robotsparebinindustries
